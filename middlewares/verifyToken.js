@@ -17,7 +17,7 @@ export const verifyToken = (req, res, next) => {
 
 export const verifyAdmin = (req, res, next) => {
   verifyToken(req, res, () => {
-    if (req.user.username === "harry408") {
+    if (req.user.username === process.env.ADMIN_USERNAME) {
       next();
     } else {
       res.status(403).json({ message: "You are not admin" });

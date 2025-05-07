@@ -10,7 +10,7 @@ import { sendMail } from "../utils/sendMail.js";
 export const adminLogin = (req, res) => {
   try {
     const { username, password } = req.body;
-    if (username === "harry408" && password === "harry111") {
+    if (username === process.env.ADMIN_USERNAME && password === process.env.ADMIN_PASSWORD) {
       const admin_token = jwt.sign({ username }, process.env.JWT_SECRET, {
         expiresIn: "3d",
       });
