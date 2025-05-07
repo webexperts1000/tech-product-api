@@ -6,6 +6,9 @@ import Product from "../models/Product.js";
 export const addProduct = async (req, res) => {
   try {
     const { name, price, category, desc, image } = req.body;
+
+    console.log("Creating product with data:", { name, price, category, desc, image });
+
     const isExists = await Product.findOne({ name });
     if (isExists)
       return res.status(400).json({ message: "Product already exists" });
@@ -21,7 +24,11 @@ export const addProduct = async (req, res) => {
     return res
       .status(201)
       .json({ message: "Product added successfully", product });
+      
   } catch (err) {
+
+    console.error("Add Product Error:", err);
+
     res.status(500).json({ message: err.message });
   }
 };
